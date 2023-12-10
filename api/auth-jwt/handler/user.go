@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"strconv"
 
 	"api-fiber-gorm/database"
@@ -62,6 +63,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 	db := database.DB
 	user := new(model.User)
+	fmt.Println("Incoming request body:", string(c.Body()))
 	if err := c.BodyParser(user); err != nil {
 		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Review your input", "data": err})
 
